@@ -1,0 +1,9 @@
+site_name: OpenSpace
+theme:
+  name: material
+
+nav:
+  - Accueil: index.md
+  - Installation: installation.md
+  - Architecture: architecture.md
+  - API: api.md

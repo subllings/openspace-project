@@ -5,11 +5,11 @@
 Before running this project, ensure that Python 3.12.10 is installed on your system.
 
 - You can download Python 3.12.10 from the official website:  
-  https://www.python.org/downloads/release/python-31210/
+https://www.python.org/downloads/release/python-31210/
 
 - Make sure the `python.exe` path is added to your system environment variables (`PATH`) so it can be accessed via terminal:
-  - On Windows, this is typically located at:  
-    `C:\Users\<YourUserName>\AppData\Local\Programs\Python\Python312\python.exe`
+-  On Windows, this is typically located at:  
+`C:\Users\<YourUserName>\AppData\Local\Programs\Python\Python312\python.exe`
 
 > ⚠️ This project is configured to create a virtual environment using Python 3.12.10. Other versions may lead to compatibility issues.
 
@@ -41,13 +41,14 @@ To initialize the Python environment for this project, follow these steps:
    ```bash
    ./setup-env.sh
    ```
-  This script will:
-  - Remove any existing `.venv/` folder.
-  - Create a new virtual environment using **Python 3.12.10**.
-  - Automatically activate the environment.
-  - Upgrade `pip`.
-  - Install all required packages from `requirements.txt`.
-  - Create a new `.venv/` folder in the project root to isolate dependencies.
+
+This script will:
+- Remove any existing `.venv/` folder.
+- Create a new virtual environment using **Python 3.12.10**.
+- Automatically activate the environment.
+- Upgrade `pip`.
+- Install all required packages from `requirements.txt`.
+- Create a new `.venv/` folder in the project root to isolate dependencies.
 
 > After those steps, your environment is fully set up and ready for development or testing.
 
@@ -65,11 +66,12 @@ Once the Python environment is set up, you can run the test suite to validate th
    ./run-test.sh
    ```
 
-  This script will:
-    - Activate the virtual environment.
-    - Run all unit tests using pytest.
-    - Display test coverage statistics.
-    - Highlight which parts of the code are not yet covered by tests.
-    - Exit with an error if any test fails.
+This script will:
+- Activate the virtual environment.
+- Run all unit tests using pytest.
+- Display test coverage statistics.
+- Highlight which parts of the code are not yet covered by tests.
+- Exit with an error if any test fails.
   
-  > This ensures your project stays robust, maintainable, and production-ready.
+> This ensures your project stays robust, maintainable, and production-ready.
+
