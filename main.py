@@ -19,7 +19,7 @@ def main() -> None:
     input_file = "problem-statement/collegues.csv"
     output_file = "data/output.csv"
     excel_file = "data/colleagues.xlsx"
-    tables = 6
+    tables = 7
     seats_per_table = 4
 
     # Load names
