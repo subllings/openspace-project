@@ -93,6 +93,9 @@ This script will:
    stored in the data folder: colleagues.xlsx.
 
    - The list of students is used to randomly assign tables and seats.
+
+   - A check is done to see if there are tables with only one person assigned.
+   In this case a review of the tables with at least one person is done and the person is re-assigned to that table.
   
    - The number of free seats left is outputted on the screen.
   
@@ -108,6 +111,10 @@ This script will:
    receives a list of students (extracted from the Excel file).
    It then reshuffles the student list simulating random order in which students arrive. After that for each student from the reshuffled list it reshuffles the table list as well, assigning then the first available table.
    The table is considred available when there are free seats.
+
+   After the first assignment, methods is_there_lonely_person
+   and eliminate_lonely_tables of the Openspace are run that
+   reassign people whol were left alone at the table to other available tables.
    
    If all tables are occupied, the student does not get a seat assignment and is added to the "unassigned list" that is printed on screen at the end of the execution of the code.
    
@@ -115,6 +122,7 @@ This script will:
 
 4. **Configurable parameters**
 
-   You can change the number of the tables and the seats, as well as the names in the input and output files in main.py
+   You can change the number of the tables and the seats, as well as the names of the input csv, intermediate xlsx, and output files in the file: config.json.
+
 
 
