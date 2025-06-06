@@ -3,10 +3,15 @@ Main Flask application to handle file uploads, process seating assignment,
 and render results to the user.
 """
 
-from flask import Flask, request, render_template, redirect, url_for, send_file
 import os
+import sys
+
+
 from utils.file_utils import load_colleagues_from_excel
 from utils.openspace import Openspace
+from flask import Flask, request, render_template, redirect, url_for, send_file
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 app = Flask(__name__)
 
