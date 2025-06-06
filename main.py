@@ -48,16 +48,10 @@ def main() -> None:
         print(">>> No lonely persons detected.\n")
 
     
-
     # Display number of remaining seats
     print(f"{BLUE}>>> {room.seats_left()} seats left in the room.{RESET}\n")
 
 
-
-
-    # Display and export
-    print(f"{BLUE}>>> Displaying seating arrangement:{RESET}\n")
-    room.display()
 
     print(f"\n{BLUE}>>> Saving seating plan to: {output_file}{RESET}\n")
     room.store(output_file)
