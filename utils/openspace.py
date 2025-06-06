@@ -48,6 +48,11 @@ class Openspace:
             for seat_index, seat in enumerate(table.seats, start=1):
                 status = seat.occupant if not seat.free else "Free"
                 print(f"  Seat {seat_index}: {status}")
+            
+            occupants = [seat.occupant for seat in table.seats if not seat.free]
+            if len(occupants) == 1:
+                print(f"> Note: {occupants[0]} is sitting alone at this table.")
+
             print("")
 
     def store(self, filename: str) -> None:
@@ -72,6 +77,53 @@ class Openspace:
         :return: Number of unoccupied seats
         """
         return sum(table.left_capacity() for table in self.tables)
+
+    def is_there_lonely_person(self) -> bool:
+        """
+        Check if at least one table has exactly one person sitting alone.
+        """
+        for table in self.tables:
+            occupied = [seat for seat in table.seats if not seat.free]
+            if len(occupied) == 1:
+                return True
+        return False
+
+    def eliminate_lonely_tables(self) -> None:
+        """
+        Redistribute individuals sitting alone to other tables with free seats.
+        Ensures no one is left sitting alone.
+        """
+        lonely_tables = []
+        receiving_tables = []
+
+        for table in self.tables:
+            occupied = [seat for seat in table.seats if not seat.free]
+            free = [seat for seat in table.seats if seat.free]
+
+            if len(occupied) == 1:
+                lonely_tables.append((table, occupied[0]))  # table + lone seat
+            elif len(free) >= 1:
+                receiving_tables.append(table)
+
+        for _, lonely_seat in lonely_tables:
+            lonely_person = lonely_seat.occupant
+
+            for target_table in receiving_tables:
+                for seat in target_table.seats:
+                    if seat.free:
+                        # Reassign person
+                        seat.occupant = lonely_person
+                        seat.free = False
+
+                        # Free old seat
+                        lonely_seat.occupant = None
+                        lonely_seat.free = True
+
+                        print(f"{lonely_person} was moved from a lonely table to a new table.")
+                        break
+                else:
+                    continue
+                break
 
 
 

@@ -2,8 +2,9 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
-from utils.file_utils import load_and_create_excel
+from utils.file_utils import create_excel_from_csv, load_colleagues_from_excel, load_config
 from utils.openspace import Openspace
+
 
 # === Define color codes ===
 BLUE = "\033[94m"
@@ -17,23 +18,42 @@ def main() -> None:
 
     # File paths and config
     input_file = "problem-statement/collegues.csv"
-    output_file = "data/output.csv"
     excel_file = "data/colleagues.xlsx"
-    tables = 6
-    seats_per_table = 4
+    output_file = "data/output.csv"
+    config = load_config()
+    tables = config["tables"]
+    seats_per_table = config["seats_per_table"]
 
-    # Load names
-    names = load_and_create_excel(input_file, excel_file)
-    print(f"\n{BLUE}>>> Loaded {len(names)} names from: {input_file}{RESET}")
-    print(f"{BLUE}>>> Excel file created at: {excel_file}{RESET}\n")
+    # Create Excel file from CSV
+    create_excel_from_csv(input_file, excel_file)
+    print(f"\n{BLUE}>>> Excel file created at: {excel_file}{RESET}")
+
+    # Load names from Excel file
+    names = load_colleagues_from_excel(excel_file)
+    print(f"{BLUE}>>> Loaded {len(names)} names from: {excel_file}{RESET}\n")
 
     # Set up the room
     room = Openspace(tables, seats_per_table)
     print(f"{BLUE}>>> Assigning colleagues to seats...{RESET}\n")
     room.organize(names)
 
-    # Check if there are any unassigned names    
+    
+    # Manage and eliminate lonely persons at tables 
+    if room.is_there_lonely_person():
+        print(">>> Lonely persons detected. Eliminating lonely tables...\n")
+        room.eliminate_lonely_tables()
+        print(">>> Re-displaying seating arrangement after elimination:\n")
+        room.display()
+    else:
+        print(">>> No lonely persons detected.\n")
+
+    
+
+    # Display number of remaining seats
     print(f"{BLUE}>>> {room.seats_left()} seats left in the room.{RESET}\n")
+
+
+
 
     # Display and export
     print(f"{BLUE}>>> Displaying seating arrangement:{RESET}\n")
@@ -41,7 +61,6 @@ def main() -> None:
 
     print(f"\n{BLUE}>>> Saving seating plan to: {output_file}{RESET}\n")
     room.store(output_file)
-
 
     print(f"{GREEN}>>> Program completed successfully.{RESET}\n")
 
