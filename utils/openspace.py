@@ -65,5 +65,15 @@ class Openspace:
                 for seat_index, seat in enumerate(table.seats, start=1):
                     writer.writerow([table_index, seat_index, seat.occupant if not seat.free else "Free"])
 
+    def seats_left(self) -> int:
+        """
+        Calculate the total number of free seats in the openspace.
+
+        :return: Number of unoccupied seats
+        """
+        return sum(table.left_capacity() for table in self.tables)
+
+
+
     def __str__(self) -> str:
         return f"Openspace with {self.number_of_tables} tables"

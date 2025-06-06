@@ -27,16 +27,3 @@ def load_and_create_excel(filepath_csv: str, output_xlsx: str = "data/colleagues
 
     return names
 
-
-# Optional: legacy CSV-only loader (commented out or kept for reference)
-# def load_colleagues_from_csv(filepath: str) -> List[str]:
-#     """
-#     Read names from a CSV file (one name per line).
-#     """
-#     names: List[str] = []
-#     with open(filepath, "r", encoding="utf-8") as file:
-#         reader = csv.reader(file)
-#         for row in reader:
-#             if row:
-#                 names.append(row[0].strip())
-#     return names

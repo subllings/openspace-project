@@ -32,12 +32,16 @@ def main() -> None:
     print(f"{BLUE}>>> Assigning colleagues to seats...{RESET}\n")
     room.organize(names)
 
+    # Check if there are any unassigned names    
+    print(f"{BLUE}>>> {room.seats_left()} seats left in the room.{RESET}\n")
+
     # Display and export
     print(f"{BLUE}>>> Displaying seating arrangement:{RESET}\n")
     room.display()
 
     print(f"\n{BLUE}>>> Saving seating plan to: {output_file}{RESET}\n")
     room.store(output_file)
+
 
     print(f"{GREEN}>>> Program completed successfully.{RESET}\n")
 
