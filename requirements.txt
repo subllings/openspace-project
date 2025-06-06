@@ -3,3 +3,7 @@
 rich>=13.0
 black>=24.0
 isort>=5.12
+
+# Data handling
+pandas>=2.0
+openpyxl>=3.1

@@ -3,6 +3,8 @@
 # === run-main.sh ===
 # Usage: chmod +x run-main.sh && ./run-main.sh
 
+clear
+
 # === Define color codes ===
 BLUE_BG="\033[44m"
 GREEN_BG="\033[42m"

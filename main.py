@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
-from utils.file_utils import load_colleagues_from_csv
+from utils.file_utils import load_and_create_excel
 from utils.openspace import Openspace
 
 # === Define color codes ===
@@ -18,12 +18,14 @@ def main() -> None:
     # File paths and config
     input_file = "problem-statement/collegues.csv"
     output_file = "data/output.csv"
+    excel_file = "data/colleagues.xlsx"
     tables = 6
     seats_per_table = 4
 
     # Load names
-    names = load_colleagues_from_csv(input_file)
-    print(f"\n{BLUE}>>> Loaded {len(names)} names from: {input_file}{RESET}\n")
+    names = load_and_create_excel(input_file, excel_file)
+    print(f"\n{BLUE}>>> Loaded {len(names)} names from: {input_file}{RESET}")
+    print(f"{BLUE}>>> Excel file created at: {excel_file}{RESET}\n")
 
     # Set up the room
     room = Openspace(tables, seats_per_table)
