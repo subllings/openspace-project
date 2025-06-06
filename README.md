@@ -75,3 +75,46 @@ This script will:
   
 > This ensures your project stays robust, maintainable, and production-ready.
 
+### Using the code
+
+1. **Launch**
+   
+   Open git bash terminal in VSC and type:
+
+      chmod +x run-main.sh && ./run-main.sh
+      ./run-main.sh
+
+   Running this shell script sets the virtual environment
+   and launches the main script: main.py.
+
+2. **Workflow, input and output**
+
+   -  The code begins with downloading a list of students from an Excel file
+   stored in the data folder: colleagues.xlsx.
+
+   - The list of students is used to randomly assign tables and seats.
+  
+   - The number of free seats left is outputted on the screen.
+  
+   - The assigned table namuber, seat number, and person's name are written
+      to a csv file output.csv in the data directory.    
+
+3. **Algorithm for assigning seats**
+
+   When script main.py initiates an Openspace class object, the constructor
+   of the latter first creates a list of table objects, each table getting capacity parameter as input (4 chairs default).
+   
+   The principal method of the Openspace class - organize -
+   receives a list of students (extracted from the Excel file).
+   It then reshuffles the student list simulating random order in which students arrive. After that for each student from the reshuffled list it reshuffles the table list as well, assigning then the first available table.
+   The table is considred available when there are free seats.
+   
+   If all tables are occupied, the student does not get a seat assignment and is added to the "unassigned list" that is printed on screen at the end of the execution of the code.
+   
+   The assignment of the seat at the table is done by calling assign_seat method of the Table's class, which in turn calls method set_occupant in the Seat's class. The seat numbers are not shuffled - they are assigned for a given table in the order from 1 to 4.
+
+4. **Configurable parameters**
+
+   You can change the number of the tables and the seats, as well as the names in the input and output files in main.py
+
+
