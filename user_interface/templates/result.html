@@ -1,0 +1,23 @@
+<!--
+Page to display the seating arrangement after processing the Excel file.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seating Arrangement Results</title>
+</head>
+<body>
+    <h1>Seating Arrangement</h1>
+    {% for table in tables %}
+        <h2>Table {{ table.table_num }}</h2>
+        <ul>
+            {% for seat_num, occupant in table.seats %}
+                <li>Seat {{ seat_num }}: {{ occupant }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    <a href="{{ url_for('download') }}">Download Seating Plan CSV</a><br>
+    <a href="{{ url_for('index') }}">Upload Another File</a>
+</body>
+</html>

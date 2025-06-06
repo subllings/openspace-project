@@ -37,8 +37,12 @@ def main() -> None:
     print(f"{BLUE}>>> Assigning colleagues to seats...{RESET}\n")
     room.organize(names)
 
+    # Display the seating arrangement (with lonely persons highlighted)
+    room.display()
+
     
     # Manage and eliminate lonely persons at tables 
+    
     if room.is_there_lonely_person():
         print(">>> Lonely persons detected. Eliminating lonely tables...\n")
         room.eliminate_lonely_tables()
@@ -46,6 +50,7 @@ def main() -> None:
         room.display()
     else:
         print(">>> No lonely persons detected.\n")
+    
 
     
     # Display number of remaining seats
